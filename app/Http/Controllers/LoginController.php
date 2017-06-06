@@ -14,7 +14,7 @@ class LoginController extends Controller
        // Apply the jwt.auth middleware to all methods in this controller
        // except for the authenticate method. We don't want to prevent
        // the user from retrieving their token if they don't already have it
-       $this->middleware('jwt.auth', ['except' => ['authenticate']]);
+       $this->middleware('jwt.auth', ['except' => ['authenticate','logout']]);
    }
     /**
      * Display a listing of the resource.
@@ -55,6 +55,12 @@ class LoginController extends Controller
     public function create()
     {
         //
+    }
+      public function logout($token)
+    {
+        //
+        JWTAuth::invalidate($token);
+        return response()->json(['message'=>'you are logout']);
     }
 
     /**

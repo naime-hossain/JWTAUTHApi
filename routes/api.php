@@ -18,5 +18,6 @@ use Illuminate\Http\Request;
 // });
 
 Route::resource('users','LoginController',['only' => ['index']]);
- Route::post('/authenticate','LoginController@authenticate');
+Route::post('authenticate','LoginController@authenticate');
+Route::get('logout/{token}','LoginController@logout');
 
